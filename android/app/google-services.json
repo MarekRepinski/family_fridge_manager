@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "804670910989",
+    "project_id": "family-fridge-manager",
+    "storage_bucket": "family-fridge-manager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804670910989:android:617b73954676fb4bcd9b44",
+        "android_client_info": {
+          "package_name": "com.example.family_fridge_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804670910989-lpthbl84d5r6hb92hereu6e21nvp5ahq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwdPCVorUV8VaMQQgKaW5IIReCGDN73Uc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804670910989-lpthbl84d5r6hb92hereu6e21nvp5ahq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
