@@ -11,10 +11,10 @@ class AuthenticationController extends GetxController {
 
   final AuthenticationManager authenticationManager;
   final LoginService loginService;
-  Rx<String?> userID = Rxn<String?>();
+  RxnString userID = RxnString(null);
   Rxn<UserProfileModel> userProfile = Rxn();
 
-  String get firstName => userProfile.value?.firstName ?? 'Unknown';
+  // String get name => userProfile.value?.name ?? 'Unknown';
 
   Future<void> setAllData() async {
     String? id = authenticationManager.checkLoginStatus();
@@ -31,7 +31,10 @@ class AuthenticationController extends GetxController {
       userProfile.value = await getUserProfileModel(userID.value.toString());
 
       authenticationManager.logIn(
-          userID.value, userProfile.value!.userType.toString());
+        userID.value,
+      );
+
+      // get fridge and its content
 
       return userID.value;
     } catch (e) {
@@ -48,23 +51,20 @@ class AuthenticationController extends GetxController {
     }
   }
 
-  Future<String?> registerInWithEmail(String email, String password) async {
+  Future<String?> registerInWithEmail(String email, String password,
+      {String fridgeID = ''}) async {
     try {
       final response = await loginService.createUser(email, password);
       userID.value = response!.uid;
 
       UserProfileModel newUser = UserProfileModel(
-          uid: response.uid,
-          firstName: 'Kalle',
-          lastName: 'Anka',
-          userType: UserType.customer);
+          uid: response.uid, name: 'Kalle', fridgeID: fridgeID, owner: true);
       FirestoreConnection firestoreConnection =
           FirestoreConnection(uid: userID.value.toString());
       await firestoreConnection.addUser(newUser);
       userProfile.value = newUser;
 
-      authenticationManager.logIn(
-          userID.value, userProfile.value!.userType.toString());
+      authenticationManager.logIn(userID.value);
 
       return userID.value;
     } catch (e) {

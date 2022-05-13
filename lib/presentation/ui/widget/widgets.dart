@@ -1,0 +1,1 @@
+export 'package:family_fridge_manager/presentation/ui/widget/navigation_drawer_widget.dart';

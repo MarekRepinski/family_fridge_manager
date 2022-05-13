@@ -1,8 +1,10 @@
+import 'package:family_fridge_manager/data/services/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class LoginService extends GetConnect {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final AuthenticationManager _manager = Get.find();
   final Rxn<User> _firebaseUser = Rxn<User>();
 
   User? get user => _firebaseUser.value;
@@ -36,14 +38,14 @@ class LoginService extends GetConnect {
     }
   }
 
-  Future<User?> signOutUser() async {
+  Future<void> signOutUser() async {
     try {
       await _auth.signOut();
-
-      return null;
+      _manager.logOut();
     } catch (e) {
-      // print(e.toString());
-      rethrow;
+      print(e.toString());
     }
   }
 }
+
+

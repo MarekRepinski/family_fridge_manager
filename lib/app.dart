@@ -2,8 +2,8 @@ import 'dart:developer';
 import 'package:family_fridge_manager/presentation/bindings/root_bindings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'core/constants/constants.dart';
+import 'core/routes/route_collection.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class App extends StatelessWidget {
       fallbackLocale: const Locale('en', 'US'),
       theme: basicTheme(),
       initialRoute: Pages.splash.name,
-      // getPages: RouteCollection.routeCollection,
+      getPages: RouteCollection.routeCollection,
     );
   }
 }

@@ -14,10 +14,13 @@ class FirestoreConnection {
   }
 
   Future addUser(UserProfileModel userProfileModel) async {
+    if (userProfileModel.fridgeID == ''){
+      // Create fridge
+    }
     await userRef.doc(uid).set({
-      'firstName': userProfileModel.firstName,
-      'lastName': userProfileModel.lastName,
-      'usertype': userProfileModel.userType.toString()
+      'name': userProfileModel.name,
+      'fridgeID': userProfileModel.fridgeID,
+      'owner': userProfileModel.owner,
     });
   }
 }

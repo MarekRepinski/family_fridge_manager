@@ -9,7 +9,7 @@ class AuthenticationManager extends GetxController with CasheManager {
     removeToken();
   }
 
-  void logIn(String? token, String type) async {
+  void logIn(String? token) async {
     isLogged.value = true;
     await saveToken(token);
   }

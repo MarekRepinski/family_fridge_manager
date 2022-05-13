@@ -33,6 +33,10 @@ class FFMTranslations extends Translations {
           'login_controller_registration_error': 'Register error',
           'login_controller_ok': 'OK',
           'splash_view_text': 'Loading...',
+          'nav_messages' : 'Messages',
+          'nav_family' : 'Family',
+          'nav_sign_out' : 'Sign out',
+          'home_add_stuff' : 'add stuff',
         },
         'sv_SE': {
           'null': '',
@@ -64,6 +68,10 @@ class FFMTranslations extends Translations {
           'login_controller_registration_error': 'Registrerings fel',
           'login_controller_ok': 'OK',
           'splash_view_text': 'Laddar...',
+          'nav_messages' : 'Meddelande',
+          'nav_family' : 'Familj',
+          'nav_sign_out' : 'Logga ut',
+          'home_add_stuff' : 'lägg till',
         },
         // 'pl_PL':{
         //   'home_title': 'Dom',

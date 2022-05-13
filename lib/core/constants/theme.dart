@@ -23,44 +23,99 @@ ThemeData basicTheme() {
 //  int colorContrast = 0xFFE9BE9B;   // Orange
   int colorWhite = 0xFFE7E7E7;      // Light light grey
   int colorBlack = 0xFF000000;      // Black
+  // int colorOpacity = 0x77000000;      // Mid Grey
 
   TextTheme _bascicTextTheme(TextTheme base) {
     return base.copyWith(
-      headline1: base.headline1!.copyWith(
-        fontFamily: 'Work Sans',
-        fontSize: 22.0,
-        fontWeight: FontWeight.bold,
+      displayLarge: base.displayLarge!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorBlack),
+      ),
+      displayMedium: base.displayMedium!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
         color: Color(colorDark),
       ),
-      headline2: base.headline2!.copyWith(
-        fontFamily: 'Work Sans',
-        fontSize: 18.0,
-        fontWeight: FontWeight.bold,
-        color: Color(colorBlack),
+      displaySmall: base.displaySmall!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
       ),
-      subtitle1: base.subtitle1!.copyWith(
-        fontFamily: 'Work Sans',
-        fontSize: 15.0,
-        fontWeight: FontWeight.normal,
-        color: Color(colorBlack),
+      headlineLarge: base.headlineLarge!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
       ),
-      bodyText1: base.bodyText1!.copyWith(
-        fontFamily: 'Tajawal',
-        fontSize: 12.0,
-        fontWeight: FontWeight.normal,
-        color: Color(colorBlack),
+      headlineMedium: base.headlineMedium!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
       ),
-      caption: base.caption!.copyWith(
-        fontFamily: 'Tajawal',
-        fontSize: 12.0,
-        fontWeight: FontWeight.bold,
-        color: Color(colorBlack),
+      headlineSmall: base.headlineSmall!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
       ),
-      button: base.button!.copyWith(
-        fontFamily: 'Tajawal',
-        fontSize: 15.0,
-        fontWeight: FontWeight.bold,
-        color: Color(colorWhite),
+      titleLarge: base.titleLarge!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
+      ),
+      titleMedium: base.titleMedium!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
+      ),
+      titleSmall: base.titleSmall!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
+      ),
+      labelLarge: base.labelLarge!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
+      ),
+      labelMedium: base.labelMedium!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
+      ),
+      labelSmall: base.labelSmall!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
+      ),
+      bodyLarge: base.bodyLarge!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
+      ),
+      bodyMedium: base.bodyMedium!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
+      ),
+      bodySmall: base.bodySmall!.copyWith(
+        fontFamily: 'Lato',
+        // fontSize: 22.0,
+        // fontWeight: FontWeight.bold,
+        color: Color(colorDark),
       ),
     );
   }
