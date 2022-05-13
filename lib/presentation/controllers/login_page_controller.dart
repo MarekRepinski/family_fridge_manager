@@ -7,10 +7,12 @@ class LoginPageController extends GetxController {
 
   FormType formType = FormType.login;
   late final AuthenticationController _authenticationController;
+  RxString name = RxString('');
   RxString email = RxString('');
   RxString password = RxString('');
   RxString passwordRettype = RxString('');
   RxnString errorEmailText = RxnString(null);
+  RxnString errorNameText = RxnString(null);
   RxnString errorPasswordText = RxnString(null);
   RxnString errorPasswordRetypeText = RxnString('');
 
@@ -20,6 +22,8 @@ class LoginPageController extends GetxController {
   void onInit() {
     super.onInit();
     _authenticationController = Get.find();
+    debounce<String>(name, validations,
+        time: const Duration(milliseconds: 500));
     debounce<String>(email, validations,
         time: const Duration(milliseconds: 500));
     debounce<String>(password, validations,
@@ -29,6 +33,7 @@ class LoginPageController extends GetxController {
   }
 
   void validations(String val) async {
+    errorNameText.value = null;
     errorEmailText.value = null;
     errorPasswordText.value = null;
     submitFunc.value = null;
@@ -38,16 +43,25 @@ class LoginPageController extends GetxController {
         errorEmailText.value = null;
       }
     } else if (formType == FormType.register) {
-      if (email.value.length > 5 && emailCheck(email.value)) {
-        if (passwordLenght(password.value)) {
-          if (passwordCheck(password.value, passwordRettype.value)) {
-            submitFunc.value = submitFunction();
-            errorEmailText.value = null;
-            errorPasswordText.value = null;
-          }
-        }
+      if (nameCheck(name.value) &&
+          email.value.length > 5 &&
+          emailCheck(email.value) &&
+          passwordLenght(password.value) &&
+          passwordCheck(password.value, passwordRettype.value)) {
+        submitFunc.value = submitFunction();
+        errorNameText.value = null;
+        errorEmailText.value = null;
+        errorPasswordText.value = null;
       }
     }
+  }
+
+  bool nameCheck(String val) {
+    if (val.isNotEmpty && val != '') {
+      return true;
+    }
+    errorNameText.value = 'registerform_name_empty';
+    return false;
   }
 
   bool emailCheck(String val) {
@@ -74,6 +88,10 @@ class LoginPageController extends GetxController {
     return true;
   }
 
+  void nameChanged(String val) {
+    name.value = val;
+  }
+
   void emailChanged(String val) {
     email.value = val;
   }
@@ -95,9 +113,9 @@ class LoginPageController extends GetxController {
       if (formType == FormType.login) {
         await loginUser(email.value, password.value);
       } else if (formType == FormType.register) {
-        await registerUser(email.value, password.value);
+        await registerUser(name.value, email.value, password.value);
       }
-      Get.offNamed(Pages.splash.name);
+      Get.offNamed(Pages.loading.name);
     };
   }
 
@@ -110,9 +128,9 @@ class LoginPageController extends GetxController {
     }
   }
 
-  Future<void> registerUser(String email, String password) async {
+  Future<void> registerUser(String name, String email, String password) async {
     try {
-      await _authenticationController.registerInWithEmail(email, password);
+      await _authenticationController.registerInWithEmail(name, email, password);
     } catch (e) {
       // print(e.toString());
       Get.defaultDialog(); // Needs to be here in order to open previous dialog. Bug?

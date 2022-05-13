@@ -18,6 +18,7 @@ class FFMTranslations extends Translations {
           'login_enter_email': 'Please enter a mail',
           'login_enter_password': 'Please enter a password',
           'loginform_email_format': 'Email not vaild',
+          'register_name': 'Name',
           'register_email': 'E-mail',
           'register_password': 'Password',
           'register_button': 'Register',
@@ -29,6 +30,7 @@ class FFMTranslations extends Translations {
           'registerform_password_short':
               'Password needs to be at least 8 chars',
           'registerform_password_no_match': 'Password does not match',
+          'registerform_name_empty' : 'This field cant be empty',
           'login_controller_user_not_found': 'User not found or bad password',
           'login_controller_registration_error': 'Register error',
           'login_controller_ok': 'OK',
@@ -55,6 +57,7 @@ class FFMTranslations extends Translations {
           'loginform_email_format': 'Mail stämmer inte',
           'register_button': 'Registrera',
           'register_login': 'Logga in',
+          'register_name': 'Namn',
           'register_email': 'E-mail',
           'register_password': 'Lösenord',
           'register_enter_email': 'Ange en mail adress',
@@ -63,6 +66,7 @@ class FFMTranslations extends Translations {
           'register_retype_password': 'Upprepa lösenord',
           'registerform_password_short': 'Lösenord måste minst inneha 8 tecken',
           'registerform_password_no_match': 'Lösenorden är inte lika',
+          'registerform_name_empty' : 'Detta fält får inte vara tomt',
           'login_controller_user_not_found':
               'Användare kunde inte hittas eller felaktigt lösenord',
           'login_controller_registration_error': 'Registrerings fel',

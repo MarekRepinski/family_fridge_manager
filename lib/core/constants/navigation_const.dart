@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 enum Pages {
   root,
-  splash,
+  loading,
   login,
   home,
 }
@@ -12,8 +12,8 @@ extension PagesExtension on Pages {
     switch (this) {
       case Pages.root:
         return '/';
-      case Pages.splash:
-        return '/splash';
+      case Pages.loading:
+        return '/loading';
       case Pages.login:
         return '/login';
       case Pages.home:
@@ -25,8 +25,8 @@ extension PagesExtension on Pages {
     switch (this) {
       case Pages.root:
         return '/';
-      case Pages.splash:
-        return 'Splash screen';
+      case Pages.loading:
+        return 'Loading screen';
       case Pages.login:
         return 'Login';
       case Pages.home:
@@ -38,7 +38,7 @@ extension PagesExtension on Pages {
     switch (this) {
       case Pages.root:
         return const Icon(Icons.error);
-      case Pages.splash:
+      case Pages.loading:
         return const Icon(Icons.error);
       case Pages.login:
         return const Icon(Icons.error);

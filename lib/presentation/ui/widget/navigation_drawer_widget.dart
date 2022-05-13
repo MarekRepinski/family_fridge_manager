@@ -84,7 +84,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 2:
           controller.signOutUser();
-          Get.offNamed(Pages.splash.name);
+          Get.offNamed(Pages.loading.name);
         break;
       default:
         break;

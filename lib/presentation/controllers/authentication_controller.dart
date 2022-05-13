@@ -51,14 +51,17 @@ class AuthenticationController extends GetxController {
     }
   }
 
-  Future<String?> registerInWithEmail(String email, String password,
+  Future<String?> registerInWithEmail(
+      String name,
+      String email,
+      String password,
       {String fridgeID = ''}) async {
     try {
       final response = await loginService.createUser(email, password);
       userID.value = response!.uid;
 
       UserProfileModel newUser = UserProfileModel(
-          uid: response.uid, name: 'Kalle', fridgeID: fridgeID, owner: true);
+          uid: response.uid, name: name, fridgeID: fridgeID, owner: true);
       FirestoreConnection firestoreConnection =
           FirestoreConnection(uid: userID.value.toString());
       await firestoreConnection.addUser(newUser);

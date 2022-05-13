@@ -18,7 +18,7 @@ class App extends StatelessWidget {
       initialBinding: RootBindings(),
       fallbackLocale: const Locale('en', 'US'),
       theme: basicTheme(),
-      initialRoute: Pages.splash.name,
+      initialRoute: Pages.loading.name,
       getPages: RouteCollection.routeCollection,
     );
   }

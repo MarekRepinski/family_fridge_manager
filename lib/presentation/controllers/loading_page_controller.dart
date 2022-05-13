@@ -2,7 +2,7 @@ import 'package:family_fridge_manager/core/constants/navigation_const.dart';
 import 'package:family_fridge_manager/presentation/controllers/authentication_controller.dart';
 import 'package:get/get.dart';
 
-class SplashPageController extends GetxController{
+class LoadingPageController extends GetxController{
   final AuthenticationController _authenticationController = Get.find();
 
   @override

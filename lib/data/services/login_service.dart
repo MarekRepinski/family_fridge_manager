@@ -43,7 +43,7 @@ class LoginService extends GetConnect {
       await _auth.signOut();
       _manager.logOut();
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 }

@@ -1,16 +1,16 @@
-import 'package:family_fridge_manager/presentation/controllers/splash_page_controller.dart';
+import 'package:family_fridge_manager/presentation/controllers/loading_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SplashPage extends StatelessWidget {
-  const SplashPage({Key? key}) : super(key: key);
+class LoadingPage extends StatelessWidget {
+  const LoadingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       body: GetBuilder(
-        init: SplashPageController(),
+        init: LoadingPageController(),
         builder: (context) {
           return Center(
             child: Column(
