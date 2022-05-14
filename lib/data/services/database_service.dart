@@ -5,20 +5,15 @@ import 'package:get/get.dart';
 
 class DataBaseService extends GetxController {
   final AuthenticationManager _authenticationManager = Get.find();
-  final FirestoreConnection _fs = Get.find();
+  final FirestoreConnection _fs = FirestoreConnection();
   UserProfileModel? currentUser;
   List<UserProfileModel>? itemList;
 
-  void changeCurrentUser(UserProfileModel upm){
-    currentUser = upm;
-  }
-
-  Future<UserProfileModel?> getUserProfileModel() async {
+  Future<void> getUserProfileModel() async {
     String? id = _authenticationManager.checkLoginStatus();
     if (id != null) {
       currentUser = await _fs.getUserProfileModel(id);
     }
     currentUser = null;
-    return null;
   }
 }

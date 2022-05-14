@@ -9,6 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(_db.currentUser?.uid.toString());
     return Scaffold(
       endDrawer: NavigationDrawerWidget(),
       appBar: AppBar(
@@ -27,7 +28,8 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(_db.currentUser!.uid.toString()),
+          child: Text('_db.currentUser!.uid.toString()'),
+          // child: Text(_db.currentUser!.uid.toString()),
         ),
       ),
       floatingActionButton: FloatingActionButton(

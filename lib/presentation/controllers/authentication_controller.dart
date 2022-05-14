@@ -12,11 +12,10 @@ class AuthenticationController extends GetxController {
   final AuthenticationManager authenticationManager;
   final LoginService loginService;
 
-  Future<String?> signInWithEmail(String email, String password) async {
+  Future<void> signInWithEmail(String email, String password) async {
     try {
       final response = await loginService.signInUser(email, password);
       authenticationManager.logIn(response!.uid,);
-      return response.uid;
     } catch (e) {
       // print(e.toString());
       Get.defaultDialog(
@@ -31,7 +30,7 @@ class AuthenticationController extends GetxController {
     }
   }
 
-  Future<String?> registerInWithEmail(
+  Future<void> registerInWithEmail(
       String name,
       String email,
       String password,
@@ -43,11 +42,9 @@ class AuthenticationController extends GetxController {
       UserProfileModel newUser = UserProfileModel(
           uid: response.uid, name: name, fridgeID: fridgeID, owner: true);
       FirestoreConnection firestoreConnection =
-          FirestoreConnection(uid: _uid);
+          FirestoreConnection();
       await firestoreConnection.addUser(newUser);
       authenticationManager.logIn(_uid);
-
-      return _uid;
     } catch (e) {
       // print(e.toString());
       Get.defaultDialog(
