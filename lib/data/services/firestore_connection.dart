@@ -17,6 +17,11 @@ class FirestoreConnection {
     return UserProfileModel.fromSnapshot(result, uid);
   }
 
+  Future<UserProfileModel> getUserProfileModel(String id) async {
+    FirestoreConnection firestoreConnection = FirestoreConnection(uid: id);
+    return await firestoreConnection.findUser();
+  }
+
   Future addUser(UserProfileModel userProfileModel) async {
     if (userProfileModel.fridgeID == '') {
       DocumentReference docRef =

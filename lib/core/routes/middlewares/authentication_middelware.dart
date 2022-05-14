@@ -8,7 +8,7 @@ class AuthenticationMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     final _authenticationManager = Get.find<AuthenticationManager>();
-    return _authenticationManager.isLogged.value
+    return _authenticationManager.isLoggedIn.value
         ? null
         : RouteSettings(name: Pages.login.name);
   }

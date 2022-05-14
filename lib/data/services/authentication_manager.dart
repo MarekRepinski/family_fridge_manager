@@ -2,22 +2,22 @@ import 'package:family_fridge_manager/data/services/cache_manager.dart';
 import 'package:get/get.dart';
 
 class AuthenticationManager extends GetxController with CasheManager {
-  final isLogged = false.obs;
+  final isLoggedIn = false.obs;
 
   void logOut(){
-    isLogged.value = false;
+    isLoggedIn.value = false;
     removeToken();
   }
 
   void logIn(String? token) async {
-    isLogged.value = true;
+    isLoggedIn.value = true;
     await saveToken(token);
   }
 
   String? checkLoginStatus() {
     final token = getToken();
     if (token != null){
-      isLogged.value = true;
+      isLoggedIn.value = true;
       return token;
     }
     return null;

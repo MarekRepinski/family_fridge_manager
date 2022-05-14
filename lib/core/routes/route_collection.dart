@@ -11,11 +11,11 @@ class RouteCollection {
   static final routeCollection = [
     GetPage(
       name: Pages.loading.name,
-      page: () => const LoadingPage(),
+      page: () => LoadingPage(),
     ),
     GetPage(
       name: Pages.home.name,
-      page: () => const HomePage(),
+      page: () => HomePage(),
       middlewares: [AuthenticationMiddleware(),],
     ),
     GetPage(

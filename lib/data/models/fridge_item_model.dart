@@ -1,4 +1,4 @@
-class FridgeItem {
+class FridgeItemModel {
   final String desc;
   final DateTime bestBefore;
   final String owner;
@@ -8,7 +8,7 @@ class FridgeItem {
   final String fridgeID;
   final String pic;
 
-  FridgeItem({
+  FridgeItemModel({
     required this.desc,
     required this.bestBefore,
     required this.owner,

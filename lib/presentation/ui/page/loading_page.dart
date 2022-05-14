@@ -1,12 +1,16 @@
+import 'package:family_fridge_manager/data/models/user_profile_model.dart';
+import 'package:family_fridge_manager/data/services/database_service.dart';
 import 'package:family_fridge_manager/presentation/controllers/loading_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoadingPage extends StatelessWidget {
-  const LoadingPage({Key? key}) : super(key: key);
+  LoadingPage({Key? key}) : super(key: key);
+  final DataBaseService dbService = Get.find();
 
   @override
   Widget build(BuildContext context) {
+    dbService.changeCurrentUser(UserProfileModel(uid: 'AIK', name: 'name', fridgeID: 'fridgeID', owner: true));
 
     return Scaffold(
       body: GetBuilder(

@@ -11,32 +11,12 @@ class AuthenticationController extends GetxController {
 
   final AuthenticationManager authenticationManager;
   final LoginService loginService;
-  RxnString userID = RxnString(null);
-  Rxn<UserProfileModel> userProfile = Rxn();
-
-  // String get name => userProfile.value?.name ?? 'Unknown';
-
-  Future<void> setAllData() async {
-    String? id = authenticationManager.checkLoginStatus();
-    if (id != null) {
-      userProfile.value = await getUserProfileModel(id);
-    }
-    super.onInit();
-  }
 
   Future<String?> signInWithEmail(String email, String password) async {
     try {
       final response = await loginService.signInUser(email, password);
-      userID.value = response!.uid;
-      userProfile.value = await getUserProfileModel(userID.value.toString());
-
-      authenticationManager.logIn(
-        userID.value,
-      );
-
-      // get fridge and its content
-
-      return userID.value;
+      authenticationManager.logIn(response!.uid,);
+      return response.uid;
     } catch (e) {
       // print(e.toString());
       Get.defaultDialog(
@@ -58,18 +38,16 @@ class AuthenticationController extends GetxController {
       {String fridgeID = ''}) async {
     try {
       final response = await loginService.createUser(email, password);
-      userID.value = response!.uid;
+      String _uid = response!.uid;
 
       UserProfileModel newUser = UserProfileModel(
           uid: response.uid, name: name, fridgeID: fridgeID, owner: true);
       FirestoreConnection firestoreConnection =
-          FirestoreConnection(uid: userID.value.toString());
+          FirestoreConnection(uid: _uid);
       await firestoreConnection.addUser(newUser);
-      userProfile.value = newUser;
+      authenticationManager.logIn(_uid);
 
-      authenticationManager.logIn(userID.value);
-
-      return userID.value;
+      return _uid;
     } catch (e) {
       // print(e.toString());
       Get.defaultDialog(
@@ -87,17 +65,10 @@ class AuthenticationController extends GetxController {
   void logout() async {
     try {
       await loginService.signOutUser();
-      userID.value = null;
-      userProfile.value = null;
       authenticationManager.logOut();
       Get.offAllNamed(Pages.home.name);
     } catch (e) {
       // print(e.toString());
     }
-  }
-
-  Future<UserProfileModel> getUserProfileModel(String id) async {
-    FirestoreConnection firestoreConnection = FirestoreConnection(uid: id);
-    return await firestoreConnection.findUser();
   }
 }

@@ -6,5 +6,6 @@ class DependencyInjection {
     Get.lazyPut<AuthenticationManager>(() => AuthenticationManager(),
         fenix: true);
     Get.lazyPut<LoginService>(() => LoginService(), fenix: true);
+    Get.lazyPut<DataBaseService>(() => DataBaseService(), fenix: true);
   }
 }
