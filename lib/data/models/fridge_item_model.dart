@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class FridgeItemModel {
   final String desc;
   final DateTime bestBefore;
@@ -5,7 +7,6 @@ class FridgeItemModel {
   final String docID;
   final String? eatenBy;
   final bool promo;
-  final String fridgeID;
   final String pic;
 
   FridgeItemModel({
@@ -15,7 +16,19 @@ class FridgeItemModel {
     required this.docID,
     this.eatenBy,
     required this.promo,
-    required this.fridgeID,
     required this.pic,
   });
+
+  factory FridgeItemModel.fromSnapshot(DocumentSnapshot snap, String fridgeID, String docID) {
+    Map<String, dynamic> data = snap.data() as Map<String, dynamic>;
+    return FridgeItemModel(
+      docID: docID,
+      desc: data['desc'] ?? '',
+      bestBefore: data['bestBefore'].toDate() ?? DateTime.now(),
+      pic: data['pic'] ?? '',
+      owner: data['owner'] ?? '',
+      promo:  data['promo'] ?? false,
+      eatenBy:  data['eatenBy'],
+    );
+  }
 }
