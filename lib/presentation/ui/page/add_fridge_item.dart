@@ -18,7 +18,6 @@ class AddFridgeItem extends StatelessWidget {
         elevation: 0.0,
         title: Text(
           'add_item_title'.tr,
-          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
       body: Scrollbar(

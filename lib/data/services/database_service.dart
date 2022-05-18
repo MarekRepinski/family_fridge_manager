@@ -8,7 +8,7 @@ class DataBaseService extends GetxController {
   final AuthenticationManager _authenticationManager = Get.find();
   final FirestoreConnection _fs = FirestoreConnection();
   UserProfileModel? currentUser;
-  List<UserProfileModel>? itemList;
+  final fridgeItemList = <FridgeItemModel>[].obs;
 
   // @override
   // void onInit() {
@@ -19,6 +19,7 @@ class DataBaseService extends GetxController {
     String? id = _authenticationManager.checkLoginStatus();
     if (id != null) {
       currentUser = await _fs.getUserProfileModel(id);
+      fridgeItemList.bindStream(_fs.fridgeItems(currentUser!.fridgeID));
     } else {
       currentUser = null;
     }
@@ -29,11 +30,12 @@ class DataBaseService extends GetxController {
     double bestBefore,
     String imgPath,
   ) async {
-    if(currentUser != null){
+    if (currentUser != null) {
       _fs.addNewItem(
           FridgeItemModel(
               desc: desc,
-              bestBefore: DateTime.now().add(Duration(days: bestBefore.toInt())),
+              bestBefore:
+                  DateTime.now().add(Duration(days: bestBefore.toInt())),
               owner: currentUser!.uid,
               docID: '',
               eatenBy: '',
@@ -41,7 +43,6 @@ class DataBaseService extends GetxController {
               picURL: ''),
           currentUser!.fridgeID,
           imgPath);
-    } else {
-    }
+    } else {}
   }
 }

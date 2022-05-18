@@ -4,9 +4,6 @@ import 'package:family_fridge_manager/data/models/user_profile_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-
-// Try-Catch block med dialog!!
-
 class FirestoreConnection {
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
@@ -17,7 +14,8 @@ class FirestoreConnection {
   Future<UserProfileModel?> getUserProfileModel(String uid) async {
     try{
       var result = await userCollection.doc(uid).get();
-      return UserProfileModel.fromSnapshot(result, uid);
+      UserProfileModel user= UserProfileModel.fromSnapshot(result, uid);
+      return user;
     } catch (e){
       // print(e.toString());
       return null;
@@ -66,4 +64,29 @@ class FirestoreConnection {
       // print(e.toString());
     }
   }
+
+  List<FridgeItemModel> _fridgeItemModelFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((DocumentSnapshot document) {
+      Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+      return FridgeItemModel(
+        desc: data['desc'] ?? '',
+        bestBefore: data['bestBefore'].toDate() ?? DateTime.now(),
+        owner: data['owner'] ?? '',
+        docID: document.id,
+        picURL: data['picURL'] ?? '',
+        promo: data['promoted'] ?? false,
+      );
+    }).toList();
+  }
+
+  Stream<List<FridgeItemModel>> fridgeItems(fridgeID) {
+    return fridgeCollection
+        .doc(fridgeID)
+        .collection('goods')
+        .where('eatenBy', isEqualTo: '')
+        .orderBy('bestBefore')
+        .snapshots()
+        .map(_fridgeItemModelFromSnapshot);
+  }
+
 }
