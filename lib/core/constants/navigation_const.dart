@@ -5,6 +5,7 @@ enum Pages {
   loading,
   login,
   home,
+  addFridgeItem,
 }
 
 extension PagesExtension on Pages {
@@ -18,6 +19,8 @@ extension PagesExtension on Pages {
         return '/login';
       case Pages.home:
         return '/home';
+      case Pages.addFridgeItem:
+        return '/addFridgeItem';
     }
   }
 
@@ -31,6 +34,8 @@ extension PagesExtension on Pages {
         return 'Login';
       case Pages.home:
         return 'Home';
+      case Pages.addFridgeItem:
+        return 'Add Fridge Item';
     }
   }
 
@@ -44,6 +49,8 @@ extension PagesExtension on Pages {
         return const Icon(Icons.error);
       case Pages.home:
         return const Icon(Icons.house_rounded);
+      case Pages.addFridgeItem:
+        return const Icon(Icons.icecream);
     }
   }
 }

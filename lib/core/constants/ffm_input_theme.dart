@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 
 class FFMInputTheme {
   static InputDecoration ffmInputDecoration(
-      String labelText, IconData iconData, String? errorText,
-      {String? helperText, String? prefix}) {
+      String labelText,
+      IconData iconData,
+      {String? errorText, String? helperText, String? prefix}) {
     return InputDecoration(
       contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       helperText: helperText != null ? helperText.tr : ' ',

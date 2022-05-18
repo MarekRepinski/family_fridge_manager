@@ -1,15 +1,15 @@
-import 'package:family_fridge_manager/data/services/database_service.dart';
+import 'package:family_fridge_manager/core/constants/constants.dart';
+import 'package:family_fridge_manager/presentation/controllers/home_controller.dart';
 import 'package:family_fridge_manager/presentation/ui/widget/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
-  final DataBaseService _db = Get.find();
+  final HomeController _controller = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
-    print(_db.currentUser?.uid.toString());
     return Scaffold(
       endDrawer: NavigationDrawerWidget(),
       appBar: AppBar(
@@ -28,15 +28,13 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text('_db.currentUser!.uid.toString()'),
-          // child: Text(_db.currentUser!.uid.toString()),
+          child: Text(_controller.getUserName()),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          tooltip: 'Add stuff',
-          onPressed: () {}
-      ),
+          child: const Icon(Icons.add), tooltip: 'Add stuff', onPressed: () {
+            Get.offNamed(Pages.addFridgeItem.name);
+          }),
     );
   }
 }

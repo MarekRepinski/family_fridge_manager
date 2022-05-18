@@ -7,7 +7,7 @@ class FridgeItemModel {
   final String docID;
   final String? eatenBy;
   final bool promo;
-  final String pic;
+  final String picURL;
 
   FridgeItemModel({
     required this.desc,
@@ -16,16 +16,16 @@ class FridgeItemModel {
     required this.docID,
     this.eatenBy,
     required this.promo,
-    required this.pic,
+    required this.picURL,
   });
 
-  factory FridgeItemModel.fromSnapshot(DocumentSnapshot snap, String fridgeID, String docID) {
+  factory FridgeItemModel.fromSnapshot(DocumentSnapshot snap, String docID) {
     Map<String, dynamic> data = snap.data() as Map<String, dynamic>;
     return FridgeItemModel(
       docID: docID,
       desc: data['desc'] ?? '',
       bestBefore: data['bestBefore'].toDate() ?? DateTime.now(),
-      pic: data['pic'] ?? '',
+      picURL: data['picURL'] ?? '',
       owner: data['owner'] ?? '',
       promo:  data['promo'] ?? false,
       eatenBy:  data['eatenBy'],

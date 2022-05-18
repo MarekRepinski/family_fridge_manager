@@ -1,28 +1,69 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:io';
+import 'package:family_fridge_manager/data/models/fridge_item_model.dart';
 import 'package:family_fridge_manager/data/models/user_profile_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
+
+// Try-Catch block med dialog!!
 
 class FirestoreConnection {
-  final CollectionReference userRef =
+  final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
-
-  final CollectionReference fridgeRef =
+  final CollectionReference fridgeCollection =
       FirebaseFirestore.instance.collection('fridges');
+  final _fs = FirebaseStorage.instance;
 
-  Future<UserProfileModel> getUserProfileModel(String uid) async {
-    var result = await userRef.doc(uid).get();
-    return UserProfileModel.fromSnapshot(result, uid);
+  Future<UserProfileModel?> getUserProfileModel(String uid) async {
+    try{
+      var result = await userCollection.doc(uid).get();
+      return UserProfileModel.fromSnapshot(result, uid);
+    } catch (e){
+      // print(e.toString());
+      return null;
+    }
   }
 
   Future addUser(UserProfileModel userProfileModel) async {
-    if (userProfileModel.fridgeID == '') {
-      DocumentReference docRef =
-          await fridgeRef.add({'timestamp': DateTime.now()});
-      userProfileModel.fridgeID = docRef.id;
+    try{
+      if (userProfileModel.fridgeID == '') {
+        DocumentReference docRef =
+        await fridgeCollection.add({'timestamp': DateTime.now()});
+        userProfileModel.fridgeID = docRef.id;
+      }
+      await userCollection.doc(userProfileModel.uid).set({
+        'name': userProfileModel.name,
+        'fridgeID': userProfileModel.fridgeID,
+        'owner': userProfileModel.owner,
+      });
+    } catch (e) {
+      // print(e.toString());
     }
-    await userRef.doc(userProfileModel.uid).set({
-      'name': userProfileModel.name,
-      'fridgeID': userProfileModel.fridgeID,
-      'owner': userProfileModel.owner,
-    });
+  }
+
+  Future addNewItem(FridgeItemModel newItem, String fridgeID, String imgPath) async {
+    try{
+      final _picFolder = _fs.ref().child('ffm/pictures/');
+
+      DocumentReference docRef = await fridgeCollection.doc(fridgeID).collection('goods').add({
+        'desc': newItem.desc,
+        'bestBefore': newItem.bestBefore,
+        'owner': newItem.owner,
+        'picURL': newItem.picURL,
+        'eatenBy': newItem.eatenBy,
+        'promo': newItem.promo,
+      });
+
+      UploadTask ulTask = _picFolder.child(docRef.id).putFile(File(imgPath));
+      String dlURL = await (await ulTask).ref.getDownloadURL();
+
+      await fridgeCollection.doc(fridgeID).collection('goods').doc(docRef.id).set({
+        'picURL': dlURL,
+      },
+        SetOptions(merge: true),
+      );
+    } catch (e) {
+      // print(e.toString());
+    }
   }
 }

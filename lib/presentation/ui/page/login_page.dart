@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
             decoration: FFMInputTheme.ffmInputDecoration(
                 'login_email'.tr,
                 Icons.person,
-                _loginPageController.errorEmailText.value),
+                errorText: _loginPageController.errorEmailText.value),
           );
         }),
         const SizedBox(
@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
             decoration: FFMInputTheme.ffmInputDecoration(
                 'login_password'.tr,
                 Icons.lock,
-                _loginPageController.errorPasswordText.value),
+                errorText: _loginPageController.errorPasswordText.value),
           );
         }),
         Obx(() {
@@ -94,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
               decoration: FFMInputTheme.ffmInputDecoration(
                   'register_name'.tr,
                   Icons.person,
-                  _loginPageController.errorNameText.value),
+                  errorText: _loginPageController.errorNameText.value),
             );
           }),
           const SizedBox(
@@ -106,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
               decoration: FFMInputTheme.ffmInputDecoration(
                   'register_email'.tr,
                   Icons.person,
-                  _loginPageController.errorEmailText.value),
+                  errorText: _loginPageController.errorEmailText.value),
             );
           }),
           const SizedBox(
@@ -119,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
               decoration: FFMInputTheme.ffmInputDecoration(
                   'register_password'.tr,
                   Icons.lock,
-                  _loginPageController.errorPasswordText.value),
+                  errorText: _loginPageController.errorPasswordText.value),
             );
           }),
           const SizedBox(
@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
               decoration: FFMInputTheme.ffmInputDecoration(
                   'register_retype_password'.tr,
                   Icons.lock,
-                  _loginPageController.errorPasswordRetypeText.value),
+                  errorText: _loginPageController.errorPasswordRetypeText.value),
             );
           }),
           Obx(() {

@@ -10,5 +10,7 @@ class RootBindings extends Bindings {
             authenticationManager: Get.find<AuthenticationManager>(),
             loginService: Get.find<LoginService>()),
         permanent: true);
+    Get.put(
+        DataBaseService(), permanent: true);
   }
 }
