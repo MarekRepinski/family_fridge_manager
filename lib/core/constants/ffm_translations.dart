@@ -5,9 +5,8 @@ class FFMTranslations extends Translations {
   Map<String, Map<String, String>> get keys => {
         'en_US': {
           'null': '',
-          'home_title': 'Home',
-          'home_subtitle': 'subtitle',
-          'home_button1': 'go to Login',
+          'home_title': 'This whats in your fridge, ',
+          'home_fridge_empty': 'Your fridge is empty!!',
           'login_title': 'Login',
           'login_title_login': 'Login',
           'login_title_register': 'Register',
@@ -55,9 +54,8 @@ class FFMTranslations extends Translations {
         },
         'sv_SE': {
           'null': '',
-          'home_title': 'Home',
-          'home_subtitle': 'subtitle',
-          'home_button1': 'gå till inloggning',
+          'home_title': 'Detta är innehållet i din kyl, ',
+          'home_fridge_empty': 'Din kyl är tom!!',
           'login_title': 'Login',
           'login_title_login': 'In loggning',
           'login_title_register': 'Registering',

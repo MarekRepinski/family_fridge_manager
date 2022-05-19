@@ -72,7 +72,7 @@ ThemeData basicTheme() {
       titleMedium: base.titleMedium!.copyWith(
         fontFamily: 'Lato',
         // fontSize: 22.0,
-        // fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.bold,
         color: Color(colorDark),
       ),
       titleSmall: base.titleSmall!.copyWith(
@@ -95,7 +95,7 @@ ThemeData basicTheme() {
       ),
       labelSmall: base.labelSmall!.copyWith(
         fontFamily: 'Lato',
-        // fontSize: 22.0,
+        // fontSize: 10.0,
         // fontWeight: FontWeight.bold,
         color: Color(colorDark),
       ),

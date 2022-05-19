@@ -32,18 +32,110 @@ class HomePage extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Text(_controller.getUserName()),
-              Obx((){
-                return Text(_db.fridgeItemList.length.toString());
-              })
+              Text('home_title'.tr + _controller.getUserName(),
+                  style: Theme.of(context).textTheme.titleMedium),
+              const SizedBox(
+                height: 8,
+              ),
+              Obx(() {
+                return _db.fridgeItemList.isEmpty
+                    ? Text('home_fridge_empty'.tr)
+                    : GridView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 170,
+                                crossAxisSpacing: 5,
+                                mainAxisSpacing: 5),
+                        itemCount: _db.fridgeItemList.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          return goodsTile(index, context);
+                        },
+                      );
+              }),
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add), tooltip: 'Add stuff', onPressed: () {
+          child: const Icon(Icons.add),
+          tooltip: 'Add stuff',
+          onPressed: () {
             Get.toNamed(Pages.addFridgeItem.name);
           }),
+    );
+  }
+
+  Card goodsTile(int index, context) {
+    String imgThumb = 'assets/blurThumb.jpg';
+    _controller.setupItemCard(index);
+
+    return Card(
+      elevation: 8.0,
+      shape: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide:
+              BorderSide(color: _controller.itemCard.colorIntense, width: 3)),
+      color: Theme.of(context).primaryColor,
+      shadowColor: _controller.itemCard.color,
+      child: InkWell(
+        splashColor: Colors.blue.withAlpha(30),
+        onTap: () {},
+        child: SizedBox(
+          // wrapp in Opacity
+          width: 150.0,
+          height: 200.0,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(4.0, 8.0, 4.0, 2.0),
+              child: Column(
+                children: [
+                  FittedBox(
+                    alignment: Alignment.topCenter,
+                    fit: BoxFit.contain,
+                    child: _db.fridgeItemList[index].picURL == ''
+                        ? Image.asset(
+                            imgThumb,
+                            width: 150.0,
+                            height: 110.0,
+                            fit: BoxFit.scaleDown,
+                          )
+                        : Image.network(
+                            _db.fridgeItemList[index].picURL,
+                            width: 150.0,
+                            height: 110.0,
+                            fit: BoxFit.contain,
+                          ),
+                  ),
+                  const SizedBox(
+                    height: 3.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: (_controller.itemCard.margin * 2.0),
+                      ),
+                      Icon(
+                        _controller.itemCard.icon,
+                        size: 15.0,
+                      ),
+                      SizedBox(
+                        width: _controller.itemCard.margin * 2.0,
+                      ),
+                      Text(
+                        _controller.itemCard.desc,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
