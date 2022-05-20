@@ -24,5 +24,9 @@ class RouteCollection {
         name: Pages.addFridgeItem.name,
         page: () => AddFridgeItem(),
     ),
+    GetPage(
+        name: Pages.fridgeItemDetail.name,
+        page: () => FridgeItemDetail(),
+    ),
   ];
 }

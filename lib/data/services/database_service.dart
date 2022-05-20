@@ -9,11 +9,15 @@ class DataBaseService extends GetxController {
   final FirestoreConnection _fs = FirestoreConnection();
   UserProfileModel? currentUser;
   final fridgeItemList = <FridgeItemModel>[].obs;
+  int currentIndex = 0;
 
   // @override
   // void onInit() {
   //   super.onInit();
   // }
+  void setCurrentItem(int index){
+    currentIndex = index;
+  }
 
   Future<void> getUserProfileModel() async {
     String? id = _authenticationManager.checkLoginStatus();

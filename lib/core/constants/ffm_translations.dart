@@ -51,6 +51,9 @@ class FFMTranslations extends Translations {
           'add_item_keep_for' :'Will keep for ',
           'add_item_image_cant_be_empty' : 'You need to provide a picture',
           'add_item_button_caption' : 'SAVE',
+          'fridge_item_detail_title' : 'Please eat me!',
+          'fridge_item_detail_best_before' : 'Best before: ',
+          'fridge_item_detail_overdue' : ' - NOTE! OVERDUE!!',
         },
         'sv_SE': {
           'null': '',
@@ -100,6 +103,9 @@ class FFMTranslations extends Translations {
           'add_item_keep_for' :'Kommer att hålla i ',
           'add_item_image_cant_be_empty' : 'Du måste ta en bild!',
           'add_item_button_caption' : 'SPARA',
+          'fridge_item_detail_title' : 'Ät mig!',
+          'fridge_item_detail_best_before' : 'Bäst före: ',
+          'fridge_item_detail_overdue' : ' - NOTERA! GAMMAL!!',
         },
         // 'pl_PL':{
         //   'home_title': 'Dom',

@@ -81,7 +81,10 @@ class HomePage extends StatelessWidget {
       shadowColor: _controller.itemCard.color,
       child: InkWell(
         splashColor: Colors.blue.withAlpha(30),
-        onTap: () {},
+        onTap: () {
+          _db.setCurrentItem(index);
+          Get.toNamed(Pages.fridgeItemDetail.name);
+        },
         child: SizedBox(
           // wrapp in Opacity
           width: 150.0,
