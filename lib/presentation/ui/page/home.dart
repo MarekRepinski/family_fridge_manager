@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
       endDrawer: NavigationDrawerWidget(),
       appBar: AppBar(
         elevation: 0.0,
-        title: const Text('Family Fridge Manager'),
+        title: Text(Pages.home.getDisplayName),
         actions: [
           Builder(builder: (context) {
             return TextButton.icon(
@@ -27,34 +27,36 @@ class HomePage extends StatelessWidget {
           }),
         ],
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Text('home_title'.tr + _controller.getUserName(),
-                  style: Theme.of(context).textTheme.titleMedium),
-              const SizedBox(
-                height: 8,
-              ),
-              Obx(() {
-                return _db.fridgeItemList.isEmpty
-                    ? Text('home_fridge_empty'.tr)
-                    : GridView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 170,
-                                crossAxisSpacing: 5,
-                                mainAxisSpacing: 5),
-                        itemCount: _db.fridgeItemList.length,
-                        itemBuilder: (BuildContext ctx, index) {
-                          return goodsTile(index, context);
-                        },
-                      );
-              }),
-            ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Text('home_title'.tr + _controller.getUserName(),
+                    style: Theme.of(context).textTheme.titleMedium),
+                const SizedBox(
+                  height: 8,
+                ),
+                Obx(() {
+                  return _db.fridgeItemList.isEmpty
+                      ? Text('home_fridge_empty'.tr)
+                      : GridView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          gridDelegate:
+                              const SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 170,
+                                  crossAxisSpacing: 5,
+                                  mainAxisSpacing: 5),
+                          itemCount: _db.fridgeItemList.length,
+                          itemBuilder: (BuildContext ctx, index) {
+                            return goodsTile(index, context);
+                          },
+                        );
+                }),
+              ],
+            ),
           ),
         ),
       ),

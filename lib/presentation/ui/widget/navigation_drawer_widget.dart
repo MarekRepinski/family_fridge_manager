@@ -30,14 +30,14 @@ class NavigationDrawerWidget extends StatelessWidget {
             const SizedBox(height: 20),
             buildMenuItem(
               context: context,
-              text: 'Family',
-              icon: Icons.family_restroom,
+              text: Pages.family.getDisplayName,
+              icon: Pages.family.getDisplayIcon,
               onClicked: () => selectedItem(context, 1),
             ),
             const SizedBox(height: 20),
             buildMenuItem(
               context: context,
-              text: 'Sign out',
+              text: 'nav_sign_out'.tr,
               icon: Icons.logout,
               onClicked: () => selectedItem(context, 2),
               // onClicked: () {

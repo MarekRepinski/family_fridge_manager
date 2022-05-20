@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 enum Pages {
   root,
@@ -7,6 +8,8 @@ enum Pages {
   home,
   addFridgeItem,
   fridgeItemDetail,
+  family,
+  addFamily,
 }
 
 extension PagesExtension on Pages {
@@ -24,6 +27,10 @@ extension PagesExtension on Pages {
         return '/addFridgeItem';
       case Pages.fridgeItemDetail:
         return '/fridgeItemDetail';
+      case Pages.family:
+        return '/family';
+      case Pages.addFamily:
+        return '/addFamily';
     }
   }
 
@@ -36,28 +43,36 @@ extension PagesExtension on Pages {
       case Pages.login:
         return 'Login';
       case Pages.home:
-        return 'Home';
+        return 'Family Fridge Manager';
       case Pages.addFridgeItem:
-        return 'Add Fridge Item';
+        return 'add_item_title'.tr;
       case Pages.fridgeItemDetail:
-        return 'Fridge Item Detail';
+        return 'fridge_item_detail_title'.tr;
+      case Pages.family:
+        return 'family_title'.tr;
+      case Pages.addFamily:
+        return 'add_family_member_title'.tr;
     }
   }
 
-  Icon get getDisplayIcon {
+  IconData get getDisplayIcon {
     switch (this) {
       case Pages.root:
-        return const Icon(Icons.error);
+        return Icons.error;
       case Pages.loading:
-        return const Icon(Icons.error);
+        return Icons.error;
       case Pages.login:
-        return const Icon(Icons.error);
+        return Icons.error;
       case Pages.home:
-        return const Icon(Icons.house_rounded);
+        return Icons.house_rounded;
       case Pages.addFridgeItem:
-        return const Icon(Icons.icecream);
+        return Icons.icecream;
       case Pages.fridgeItemDetail:
-        return const Icon(Icons.icecream);
+        return Icons.icecream;
+      case Pages.family:
+        return Icons.family_restroom;
+      case Pages.addFamily:
+        return Icons.family_restroom;
     }
   }
 }

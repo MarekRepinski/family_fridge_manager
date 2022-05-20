@@ -16,9 +16,7 @@ class AddFridgeItem extends StatelessWidget {
         child: Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        title: Text(
-          'add_item_title'.tr,
-        ),
+        title: Text(Pages.addFridgeItem.getDisplayName),
       ),
       body: Scrollbar(
         child: SingleChildScrollView(
