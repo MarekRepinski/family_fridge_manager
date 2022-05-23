@@ -56,6 +56,7 @@ class FFMTranslations extends Translations {
           'family_title' : 'Family',
           'family_headline' : 'My Family',
           'family_sub_headline' : '(and Fridge-Friends)',
+          'family_add_member' : 'Add Family Member',
           'add_family_member_title' : 'Add Family Member',
         },
         'sv_SE': {
@@ -111,6 +112,7 @@ class FFMTranslations extends Translations {
           'family_title' : 'Familj',
           'family_headline' : 'Min Familj',
           'family_sub_headline' : '(och Kylskåps-vänner)',
+          'family_add_member' : 'Lägg till medlem',
           'add_family_member_title' : 'Lägg till medlem',
         },
         // 'pl_PL':{

@@ -59,6 +59,34 @@ class AuthenticationController extends GetxController {
     }
   }
 
+  Future<void> addUserWithEmail(
+      String name,
+      String email,
+      String password,
+      {String fridgeID = ''}) async {
+    try {
+      final response = await loginService.addUser(email, password);
+      String _uid = response!.uid;
+
+      UserProfileModel newUser = UserProfileModel(
+          uid: _uid, name: name, fridgeID: fridgeID, owner: false);
+      FirestoreConnection firestoreConnection =
+          FirestoreConnection();
+      await firestoreConnection.addUser(newUser);
+    } catch (e) {
+      // print(e.toString());
+      Get.defaultDialog(
+          middleText: 'login_controller_registration_error'.tr,
+          textConfirm: 'login_controller_ok'.tr,
+          confirmTextColor: Colors.white,
+          onConfirm: () {
+            Get.back();
+          });
+      logout();
+      rethrow;
+    }
+  }
+
   void logout() async {
     try {
       await loginService.signOutUser();

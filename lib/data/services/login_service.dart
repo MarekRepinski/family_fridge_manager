@@ -1,5 +1,6 @@
 import 'package:family_fridge_manager/data/services/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 
 class LoginService extends GetConnect {
@@ -20,6 +21,23 @@ class LoginService extends GetConnect {
           email: email.trim(), password: password);
 
       return result.user;
+    } catch (e) {
+      // print(e.toString());
+      rethrow;
+    }
+  }
+
+  Future<User?> addUser(String email, String password) async {
+    try {
+      // Create a temp app to create a new user
+      FirebaseApp tempApp = await Firebase.initializeApp(name: 'temporaryregister', options: Firebase.app().options);
+      UserCredential result = await FirebaseAuth.instanceFor(app: tempApp).createUserWithEmailAndPassword(
+          email: email.trim(), password: password);
+
+      User? user = result.user;
+      tempApp.delete();
+
+      return user;
     } catch (e) {
       // print(e.toString());
       rethrow;

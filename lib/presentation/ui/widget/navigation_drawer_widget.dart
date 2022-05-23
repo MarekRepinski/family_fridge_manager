@@ -78,9 +78,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         // ));
         break;
       case 1:
-        // Navigator.of(context).push(MaterialPageRoute(
-        //   builder: (context) => Family(fridgeID: userData.fridgeID),
-        // ));
+        Get.toNamed(Pages.family.name);
         break;
       case 2:
           controller.signOutUser();

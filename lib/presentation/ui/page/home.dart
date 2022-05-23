@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
-          tooltip: 'Add stuff',
+          tooltip: 'home_add_stuff'.tr,
           onPressed: () {
             Get.toNamed(Pages.addFridgeItem.name);
           }),
