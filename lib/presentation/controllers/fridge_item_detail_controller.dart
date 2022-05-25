@@ -31,6 +31,20 @@ class FridgeItemDetailController extends GetxController {
       colorWithIntense = (Colors.red[colorIntense])!;
     }
   }
+
+  void promoteFood() async{
+    await _db.promoFood();
+    await _db.addNewMsgLog('log_msg_promoted');
+  }
+
+  void eatFood(bool trash) async {
+    await _db.eatFood(trash);
+    if (trash){
+      await _db.addNewMsgLog('log_msg_trashed');
+    } else {
+      await _db.addNewMsgLog('log_msg_ate');
+    }
+  }
 }
 
 

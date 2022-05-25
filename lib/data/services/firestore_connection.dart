@@ -84,12 +84,13 @@ class FirestoreConnection {
     }
   }
 
-  Future addMsgToLog(String msg, String fridgeID) async {
+  Future addMsgToLog(String msg, String userName, String foodName, String fridgeID) async {
     DocumentReference docRef = await fridgeCollection.doc(fridgeID).collection('logs').add({
       'msg': msg,
+      'userName' : userName,
+      'foodName' : foodName,
       'timeStamp': DateTime.now(),
     });
-
     return docRef.id;
   }
 
@@ -104,7 +105,7 @@ class FirestoreConnection {
 
   Future promoFood(String fridgeID, String docID) async {
     await fridgeCollection.doc(fridgeID).collection('goods').doc(docID).set({
-      'promoted': true,
+      'promo': true,
     },
       SetOptions(merge: true),
     );
@@ -119,7 +120,7 @@ class FirestoreConnection {
         owner: data['owner'] ?? '',
         docID: document.id,
         picURL: data['picURL'] ?? '',
-        promo: data['promoted'] ?? false,
+        promo: data['promo'] ?? false,
       );
     }).toList();
   }
@@ -140,6 +141,8 @@ class FirestoreConnection {
       return MsgLogs(
         logDate: data['timeStamp'].toDate() ?? DateTime(1891,2,15),
         logMsg: data['msg'] ?? '',
+        userName: data['userName'] ?? '',
+        foodDesc: data['foodDesc'] ?? '',
       );
     }).toList();
   }

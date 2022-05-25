@@ -9,8 +9,8 @@ class DataBaseService extends GetxController {
   final AuthenticationManager _authenticationManager = Get.find();
   final FirestoreConnection _fs = FirestoreConnection();
   UserProfileModel? currentUser;
-  final fridgeItemList = <FridgeItemModel>[].obs;
-  final msgLogsList = <MsgLogs>[].obs;
+  RxList<FridgeItemModel> fridgeItemList = <FridgeItemModel>[].obs;
+  RxList<MsgLogs> msgLogsList = <MsgLogs>[].obs;
   RxList<String> familyMembersList = <String>[].obs;
   int currentIndex = 0;
 
@@ -60,22 +60,24 @@ class DataBaseService extends GetxController {
   Future<void> addNewMsgLog(String msg) async {
     await _fs.addMsgToLog(
       msg,
+      currentUser!.name,
+      fridgeItemList[currentIndex].desc,
       currentUser!.fridgeID,
     );
   }
 
-  Future<void> promoFood(String docID) async {
+  Future<void> promoFood() async {
     await _fs.promoFood(
       currentUser!.fridgeID,
-      docID,
+      fridgeItemList[currentIndex].docID,
     );
   }
 
-  Future<void> eatFood(String docID, bool trash) async {
+  Future<void> eatFood(bool trash) async {
     await _fs.eatFood(
       currentUser!.uid,
       currentUser!.fridgeID,
-      docID,
+      fridgeItemList[currentIndex].docID,
       trash,
     );
   }

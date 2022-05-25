@@ -11,7 +11,7 @@ void main() async {
   await Firebase.initializeApp();
   DependencyInjection.init();
 
-  runApp(const SplashScreen());
+  runApp(const App());
 }
 
 class SplashScreen extends StatelessWidget {

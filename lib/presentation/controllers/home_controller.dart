@@ -25,7 +25,7 @@ class HomeController extends GetxController {
   }
 
   void setupItemCard(int index) {
-    FridgeItemModel goods = _db.fridgeItemList[index];
+    final FridgeItemModel goods = _db.fridgeItemList[index];
 
     itemCard.margin = 5.0;
     if (goods.desc.length > 10) {
@@ -42,7 +42,7 @@ class HomeController extends GetxController {
       colorIntense = 500;
     }
 
-    if (dateDiff > 1){
+    if (dateDiff > 1) {
       itemCard.color = Colors.green;
       itemCard.colorIntense = (Colors.green[colorIntense])!;
     } else {
@@ -50,12 +50,12 @@ class HomeController extends GetxController {
       itemCard.colorIntense = (Colors.red[colorIntense])!;
     }
 
-    if (dateDiff < 0){
+    if (goods.promo) {
+      itemCard.icon = Icons.priority_high;
+    } else if (dateDiff < 0) {
       itemCard.icon = Icons.warning;
     } else if (dateDiff < 2) {
       itemCard.icon = Icons.alarm;
-    } else if (goods.promo) {
-      itemCard.icon = Icons.priority_high;
     } else {
       itemCard.icon = Icons.restaurant;
     }
