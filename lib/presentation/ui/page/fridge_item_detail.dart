@@ -42,7 +42,7 @@ class FridgeItemDetail extends StatelessWidget {
               splashColor: Colors.blue.withAlpha(30),
               onTap: () {
                 Get.bottomSheet(
-                  bottomSheet(context),
+                  bottomSheet(context, position),
                   backgroundColor: Colors.white,
                   shape:
                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -104,7 +104,7 @@ class FridgeItemDetail extends StatelessWidget {
     );
   }
 
-  Widget bottomSheet(context){
+  Widget bottomSheet(context, int index){
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +124,7 @@ class FridgeItemDetail extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  _controller.promoteFood();
+                  _controller.promoteFood(index);
                   Get.back();
                   Get.snackbar(
                       'fridge_item_detail_settingsform_promoted'.tr, // Title
@@ -162,7 +162,7 @@ class FridgeItemDetail extends StatelessWidget {
                     backgroundColor: Colors.white,
                     radius: 20,
                     buttonColor: Colors.red,
-                    confirm: confirmButton(false),
+                    confirm: confirmButton(false, index),
                     cancel: cancelButton(),
                   );
                 },
@@ -192,7 +192,7 @@ class FridgeItemDetail extends StatelessWidget {
                     backgroundColor: Colors.white,
                     radius: 20,
                     buttonColor: Colors.red,
-                    confirm: confirmButton(true),
+                    confirm: confirmButton(true, index),
                     cancel: cancelButton(),
                   );
                 },
@@ -218,10 +218,10 @@ class FridgeItemDetail extends StatelessWidget {
     );
   }
 
-  Widget confirmButton(bool trashed){
+  Widget confirmButton(bool trashed, int index){
     return ElevatedButton(
         onPressed: (){
-          _controller.eatFood(trashed);
+          _controller.eatFood(trashed, index);
           Get.back();
           Get.back();
           Get.back();

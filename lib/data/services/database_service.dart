@@ -57,11 +57,11 @@ class DataBaseService extends GetxController {
         imgPath);
   }
 
-  Future<void> addNewMsgLog(String msg) async {
+  Future<void> addNewMsgLog(String msg, String foodName) async {
     await _fs.addMsgToLog(
       msg,
       currentUser!.name,
-      fridgeItemList[currentIndex].desc,
+      foodName,
       currentUser!.fridgeID,
     );
   }

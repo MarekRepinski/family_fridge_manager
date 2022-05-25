@@ -32,17 +32,18 @@ class FridgeItemDetailController extends GetxController {
     }
   }
 
-  void promoteFood() async{
+  void promoteFood(int index) async{
     await _db.promoFood();
-    await _db.addNewMsgLog('log_msg_promoted');
+    await _db.addNewMsgLog('log_msg_promoted', _db.fridgeItemList[index].desc);
   }
 
-  void eatFood(bool trash) async {
+  void eatFood(bool trash, int index) async {
+    String _foodName = _db.fridgeItemList[index].desc;
     await _db.eatFood(trash);
     if (trash){
-      await _db.addNewMsgLog('log_msg_trashed');
+      await _db.addNewMsgLog('log_msg_trashed', _foodName);
     } else {
-      await _db.addNewMsgLog('log_msg_ate');
+      await _db.addNewMsgLog('log_msg_ate', _foodName);
     }
   }
 }

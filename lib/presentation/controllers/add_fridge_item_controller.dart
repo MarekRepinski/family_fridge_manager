@@ -66,7 +66,7 @@ class AddFridgeItemController extends GetxController{
     if (image.value != null){
       //save to database
       await _db.addNewFridgeItem(description.value, days.value, image.value!.path);
-      await _db.addNewMsgLog('log_msg_added');
+      await _db.addNewMsgLog('log_msg_added', description.value);
       Get.offNamed(Pages.loading.name);
     } else {
       error.value = 'add_item_image_cant_be_empty'.tr;
