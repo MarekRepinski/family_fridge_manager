@@ -1,5 +1,6 @@
 import 'package:family_fridge_manager/core/constants/constants.dart';
 import 'package:family_fridge_manager/core/routes/middlewares/authentication_middelware.dart';
+import 'package:family_fridge_manager/presentation/ui/page/msgs.dart';
 import 'package:family_fridge_manager/presentation/ui/page/pages.dart';
 import 'package:get/get.dart';
 
@@ -35,6 +36,10 @@ class RouteCollection {
     GetPage(
         name: Pages.addFamily.name,
         page: () => AddFamily(),
+    ),
+    GetPage(
+        name: Pages.msgs.name,
+        page: () => Msgs(),
     ),
   ];
 }

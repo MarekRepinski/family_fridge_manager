@@ -27,27 +27,33 @@ class AddFridgeItem extends StatelessWidget {
               const SizedBox(
                 height: 20.0,
               ),
-              Obx(() {
-                return _controller.image.value == null
-                    ? const Placeholder(
-                        fallbackHeight: 200,
-                        fallbackWidth: double.infinity,
-                      )
-                    : Image.file(
-                        File(_controller.image.value!.path),
-                        height: 200.0,
-                        fit: BoxFit.contain,
-                      );
-              }),
+              InkWell(
+                onTap: _controller.changeImage,
+                child: Obx(() {
+                  return _controller.image.value == null
+                      ? const Placeholder(
+                          fallbackHeight: 200,
+                          fallbackWidth: double.infinity,
+                        )
+                      : Image.file(
+                          File(_controller.image.value!.path),
+                          height: 200.0,
+                          fit: BoxFit.contain,
+                        );
+                }),
+              ),
               const SizedBox(
                 height: 10.0,
               ),
               TextButton.icon(
                 onPressed: _controller.changeImage,
-                icon: const Icon(Icons.camera_alt),
+                icon: const Icon(
+                  Icons.camera_alt,
+                  size: 40.0,
+                ),
                 label: Text(
                   'add_item_photo'.tr,
-                  style: Theme.of(context).textTheme.caption,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               const SizedBox(
@@ -67,12 +73,15 @@ class AddFridgeItem extends StatelessWidget {
               Obx(() {
                 return Text(
                   'add_item_keep_for'.tr + _controller.showDayText.value,
-                  style: Theme.of(context).textTheme.caption,
+                  style: Theme.of(context).textTheme.titleLarge,
                 );
               }),
               SliderTheme(
-                data: const SliderThemeData(
-                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10)),
+                data: SliderThemeData(
+                  thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 20),
+                  overlayColor: Colors.green.withOpacity(0.25),
+                  trackHeight: 15.0,
+                ),
                 child: Obx(() {
                   return Slider(
                     value: (_controller.slidervalue.value).toDouble(),
@@ -90,15 +99,18 @@ class AddFridgeItem extends StatelessWidget {
                   );
                 }),
               ),
+              const SizedBox(
+                height: 40.0,
+              ),
               ElevatedButton(
                 child: Text(
                   'Save',
-                  style: Theme.of(context).textTheme.button,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 onPressed: _controller.submit,
               ),
               const SizedBox(height: 12.0),
-              Obx((){
+              Obx(() {
                 return Text(
                   _controller.error.value,
                   style: const TextStyle(color: Colors.red, fontSize: 14.0),

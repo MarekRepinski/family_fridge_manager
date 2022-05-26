@@ -59,7 +59,8 @@ class FirestoreConnection {
 
   Future addNewItem(FridgeItemModel newItem, String fridgeID, String imgPath) async {
     try{
-      final _picFolder = _fs.ref().child('ffm/pictures/');
+      // final _picFolder = _fs.ref().child('ffm/pictures/');
+      final _picFolder = _fs.ref().child('ffm/pictures/' + fridgeID + '/');
 
       DocumentReference docRef = await fridgeCollection.doc(fridgeID).collection('goods').add({
         'desc': newItem.desc,
@@ -142,7 +143,7 @@ class FirestoreConnection {
         logDate: data['timeStamp'].toDate() ?? DateTime(1891,2,15),
         logMsg: data['msg'] ?? '',
         userName: data['userName'] ?? '',
-        foodDesc: data['foodDesc'] ?? '',
+        foodDesc: data['foodName'] ?? '',
       );
     }).toList();
   }

@@ -10,6 +10,7 @@ enum Pages {
   fridgeItemDetail,
   family,
   addFamily,
+  msgs,
 }
 
 extension PagesExtension on Pages {
@@ -31,6 +32,8 @@ extension PagesExtension on Pages {
         return '/family';
       case Pages.addFamily:
         return '/addFamily';
+      case Pages.msgs:
+        return '/msgs';
     }
   }
 
@@ -52,6 +55,8 @@ extension PagesExtension on Pages {
         return 'family_title'.tr;
       case Pages.addFamily:
         return 'add_family_member_title'.tr;
+      case Pages.msgs:
+        return 'msgs_title'.tr;
     }
   }
 
@@ -73,6 +78,8 @@ extension PagesExtension on Pages {
         return Icons.family_restroom;
       case Pages.addFamily:
         return Icons.family_restroom;
+      case Pages.msgs:
+        return Icons.message;
     }
   }
 }

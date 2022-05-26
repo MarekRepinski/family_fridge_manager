@@ -8,6 +8,7 @@ class NavigationDrawerWidget extends StatelessWidget {
 
   final padding = const EdgeInsets.symmetric(horizontal: 20);
   final LoginService controller = Get.find();
+
   // late N2UserData userData;
 
   @override
@@ -23,8 +24,8 @@ class NavigationDrawerWidget extends StatelessWidget {
             const SizedBox(height: 70),
             buildMenuItem(
               context: context,
-              text: 'Messages',
-              icon: Icons.message,
+              text: Pages.msgs.getDisplayName,
+              icon: Pages.msgs.getDisplayIcon,
               onClicked: () => selectedItem(context, 0),
             ),
             const SizedBox(height: 20),
@@ -73,16 +74,14 @@ class NavigationDrawerWidget extends StatelessWidget {
 
     switch (index) {
       case 0:
-        // Navigator.of(context).push(MaterialPageRoute(
-        //   builder: (context) => Msgs(fridgeID: userData.fridgeID),
-        // ));
+        Get.toNamed(Pages.msgs.name);
         break;
       case 1:
         Get.toNamed(Pages.family.name);
         break;
       case 2:
-          controller.signOutUser();
-          Get.offNamed(Pages.loading.name);
+        controller.signOutUser();
+        Get.offNamed(Pages.loading.name);
         break;
       default:
         break;

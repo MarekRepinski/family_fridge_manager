@@ -75,6 +75,7 @@ class FFMTranslations extends Translations {
           'log_msg_promoted' : ' promoted: ',
           'log_msg_ate' : ' ate: ',
           'log_msg_trashed' : ' trashed: ',
+          'msgs_title' : 'Messages and logs',
         },
         'sv_SE': {
           'null': '',
@@ -148,6 +149,7 @@ class FFMTranslations extends Translations {
           'log_msg_promoted' : ' föreslog: ',
           'log_msg_ate' : ' åt: ',
           'log_msg_trashed' : ' kastade: ',
+          'msgs_title' : 'Meddelanden och loggar',
         },
         // 'pl_PL':{
         //   'home_title': 'Dom',

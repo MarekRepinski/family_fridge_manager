@@ -14,15 +14,18 @@ class FridgeItemDetail extends StatelessWidget {
     final PageController _pageController =
         PageController(initialPage: _db.currentIndex);
 
-    Get.snackbar(
-        'fridge_item_detail_snackbar_title'.tr, // Title
-        'fridge_item_detail_snackbar_msg'.tr, // Message
-        colorText: Colors.black,
-        snackPosition: SnackPosition.BOTTOM,
-        icon: const Icon(Icons.flatware),
-        backgroundColor: Colors.white,
-        duration: const Duration(seconds: 2),
-        instantInit: false);
+    if (_db.firstDetail){
+      _db.setFirstDetail();
+      Get.snackbar(
+          'fridge_item_detail_snackbar_title'.tr, // Title
+          'fridge_item_detail_snackbar_msg'.tr, // Message
+          colorText: Colors.black,
+          snackPosition: SnackPosition.BOTTOM,
+          icon: const Icon(Icons.flatware),
+          backgroundColor: Colors.white,
+          duration: const Duration(seconds: 2),
+          instantInit: false);
+    }
 
     return PageView.builder(
       controller: _pageController,

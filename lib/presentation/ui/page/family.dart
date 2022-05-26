@@ -55,7 +55,7 @@ class Family extends StatelessWidget {
     );
   }
 
-  Padding familyCard(int index, context) {
+  Widget familyCard(int index, context) {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Card(

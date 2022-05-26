@@ -13,13 +13,20 @@ class DataBaseService extends GetxController {
   RxList<MsgLogs> msgLogsList = <MsgLogs>[].obs;
   RxList<String> familyMembersList = <String>[].obs;
   int currentIndex = 0;
+  late bool firstDetail;
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
+  @override
+  void onInit() {
+    super.onInit();
+    firstDetail = true;
+  }
+
   void setCurrentItem(int index) {
     currentIndex = index;
+  }
+
+  void setFirstDetail() {
+    firstDetail = false;
   }
 
   Future<void> getUserProfileModel() async {
