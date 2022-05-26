@@ -12,6 +12,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     log(Get.deviceLocale.toString());
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       translations: FFMTranslations(),
       title: 'Family Fridge Manager',
       locale: Get.deviceLocale,
