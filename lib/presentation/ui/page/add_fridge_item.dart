@@ -104,7 +104,7 @@ class AddFridgeItem extends StatelessWidget {
               ),
               ElevatedButton(
                 child: Text(
-                  'Save',
+                  'add_item_button_caption'.tr,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 onPressed: _controller.submit,
