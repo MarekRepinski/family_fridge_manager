@@ -78,7 +78,11 @@ class FridgeItemDetail extends StatelessWidget {
                         ),
                         Text(
                           _db.fridgeItemList[position].desc,
-                          style: Theme.of(context).textTheme.headlineMedium,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall
+                              ?.merge(
+                                  const TextStyle(fontWeight: FontWeight.bold)),
                         ),
                         const SizedBox(
                           height: 8.0,
@@ -88,7 +92,7 @@ class FridgeItemDetail extends StatelessWidget {
                               _db.fridgeItemList[position].bestBefore
                                   .toString()
                                   .substring(0, 10),
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                         const SizedBox(
                           height: 4.0,
@@ -109,7 +113,7 @@ class FridgeItemDetail extends StatelessWidget {
                                   _controller.noticeText.value!,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .titleLarge
+                                      .titleMedium
                                       ?.merge(TextStyle(
                                           color:
                                               _controller.noticeTextColor.value,

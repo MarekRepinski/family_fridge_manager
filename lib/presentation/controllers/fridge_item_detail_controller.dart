@@ -58,6 +58,7 @@ class FridgeItemDetailController extends GetxController {
     notice.value = true;
     noticeIcon.value = Icons.priority_high;
     noticeText.value = 'fridge_item_detail_promo'.tr;
+    noticeTextColor.value = Colors.black;
   }
 
   void eatFood(bool trash, int index) async {
