@@ -10,6 +10,7 @@ class LoadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Color(0xff2499de),
       body: GetBuilder(
         init: LoadingPageController(),
         builder: (context) {

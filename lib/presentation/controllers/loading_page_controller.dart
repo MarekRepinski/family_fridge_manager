@@ -9,10 +9,7 @@ class LoadingPageController extends GetxController{
   void onInit() async {
     super.onInit();
     await _dataBaseService.getUserProfileModel();
-    if (_dataBaseService.currentUser != null){
-      // Load all data
-    }
-
+    _dataBaseService.setShowSplash();
     Get.offNamed(Pages.home.name);
   }
 }

@@ -14,7 +14,7 @@ class FridgeItemDetail extends StatelessWidget {
     final PageController _pageController =
         PageController(initialPage: _db.currentIndex);
 
-    if (_db.firstDetail){
+    if (_db.firstDetail) {
       _db.setFirstDetail();
       Get.snackbar(
           'fridge_item_detail_snackbar_title'.tr, // Title
@@ -40,61 +40,86 @@ class FridgeItemDetail extends StatelessWidget {
             // centerTitle: true,
           ),
           body: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(15.0),
             child: InkWell(
               splashColor: Colors.blue.withAlpha(30),
               onTap: () {
                 Get.bottomSheet(
                   bottomSheet(context, position),
                   backgroundColor: Colors.white,
-                  shape:
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0)),
                 );
               },
-              child: Card(
-                elevation: 8.0,
-                shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                        color: _controller.colorWithIntense, width: 3)),
-                color: Theme.of(context).primaryColor,
-                shadowColor: _controller.color,
-                child: SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
+              child: FractionallySizedBox(
+                widthFactor: 1.0,
+                heightFactor: 0.95,
+                child: Card(
+                  elevation: 8.0,
+                  shape: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                          color: _controller.colorWithIntense, width: 3)),
+                  color: Theme.of(context).primaryColor,
+                  shadowColor: _controller.color,
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Flexible(
-                          child: FractionallySizedBox(
-                            heightFactor: 1.0,
-                            child: Image.network(
-                              _db.fridgeItemList[position].picURL,
-                              fit: BoxFit.contain,
-                            ),
+                          child: Image.network(
+                            _db.fridgeItemList[position].picURL,
+                            fit: BoxFit.contain,
                           ),
                         ),
                         const SizedBox(
-                          height: 3.0,
+                          height: 4.0,
                         ),
                         Text(
                           _db.fridgeItemList[position].desc,
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         const SizedBox(
-                          height: 10.0,
+                          height: 8.0,
                         ),
                         Text(
                           'fridge_item_detail_best_before'.tr +
                               _db.fridgeItemList[position].bestBefore
                                   .toString()
-                                  .substring(0, 10) +
-                              _controller.overdue,
+                                  .substring(0, 10),
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                         const SizedBox(
-                          height: 5.0,
+                          height: 4.0,
                         ),
+                        Obx(() {
+                          if (_controller.notice.value) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  _controller.noticeIcon.value,
+                                  color: _controller.noticeTextColor.value,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  _controller.noticeText.value!,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge
+                                      ?.merge(TextStyle(
+                                          color:
+                                              _controller.noticeTextColor.value,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                              ],
+                            );
+                          }
+                          return Container();
+                        }),
                       ],
                     ),
                   ),
@@ -107,7 +132,7 @@ class FridgeItemDetail extends StatelessWidget {
     );
   }
 
-  Widget bottomSheet(context, int index){
+  Widget bottomSheet(context, int index) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -191,7 +216,8 @@ class FridgeItemDetail extends StatelessWidget {
                 onTap: () {
                   Get.defaultDialog(
                     title: 'fridge_item_detail_settingsform_alert'.tr,
-                    middleText: 'fridge_item_detail_settingsform_alert_trash'.tr,
+                    middleText:
+                        'fridge_item_detail_settingsform_alert_trash'.tr,
                     backgroundColor: Colors.white,
                     radius: 20,
                     buttonColor: Colors.red,
@@ -221,9 +247,9 @@ class FridgeItemDetail extends StatelessWidget {
     );
   }
 
-  Widget confirmButton(bool trashed, int index){
+  Widget confirmButton(bool trashed, int index) {
     return ElevatedButton(
-        onPressed: (){
+        onPressed: () {
           _controller.eatFood(trashed, index);
           Get.back();
           Get.back();
@@ -232,9 +258,9 @@ class FridgeItemDetail extends StatelessWidget {
         child: Text('fridge_item_detail_settingsform_alert_confirm'.tr));
   }
 
-  Widget cancelButton(){
+  Widget cancelButton() {
     return ElevatedButton(
-        onPressed: (){
+        onPressed: () {
           Get.back();
           Get.back();
         },

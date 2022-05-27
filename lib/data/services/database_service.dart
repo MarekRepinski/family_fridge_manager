@@ -3,6 +3,7 @@ import 'package:family_fridge_manager/data/models/msg_logs.dart';
 import 'package:family_fridge_manager/data/models/user_profile_model.dart';
 import 'package:family_fridge_manager/data/services/authentication_manager.dart';
 import 'package:family_fridge_manager/data/services/firestore_connection.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 
 class DataBaseService extends GetxController {
@@ -14,6 +15,7 @@ class DataBaseService extends GetxController {
   RxList<String> familyMembersList = <String>[].obs;
   int currentIndex = 0;
   late bool firstDetail;
+  bool showSplash = true;
 
   @override
   void onInit() {
@@ -27,6 +29,11 @@ class DataBaseService extends GetxController {
 
   void setFirstDetail() {
     firstDetail = false;
+  }
+
+  void setShowSplash() {
+    showSplash = false;
+    FlutterNativeSplash.remove();
   }
 
   Future<void> getUserProfileModel() async {
